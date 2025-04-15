@@ -139,7 +139,7 @@ public class App
         for (int i = 0; i < addresses.size(); i++) {
             System.out.println("\nАдрес #" + i + ":");
             System.out.println(addresses.get(i).getFullAddress());
-            System.out.println("Тип доставки: " + addresses.get(i).getDeliveryType()1);
+            System.out.println("Тип доставки: " + addresses.get(i).getDeliveryType());
         }
     }
 
