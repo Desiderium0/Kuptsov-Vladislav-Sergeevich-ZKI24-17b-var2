@@ -14,7 +14,7 @@ public class PostalAddress {
   private String street;
   private int houseNumber;
   private int apartment;
-  public int entrance;
+  private int entrance;
   private double floor;
 
   private static final Logger logger = Logger.getLogger(PostalAddress.class.getName());
@@ -52,14 +52,20 @@ public class PostalAddress {
   * @param country страна
   * @param region регион
   * @param city город
-  * @param postalCode почтовый индекс (6 цифр)
+  * @param postalCode
+  * почтовый индекс (6 цифр)
   * @param street улица
-  * @param houseNumber номер дома (положительное число)
-  * @param apartment номер квартиры (неотрицательное число)
-  * @param entrance номер подъезда (положительное число)
+  * @param houseNumber
+  * номер дома (положительное число)
+  * @param apartment
+  * номер квартиры (неотрицательное число)
+  * @param entrance
+  * номер подъезда (положительное число)
   * @param floor этаж (неотрицательное число)
-  * @throws InvalidPostalCodeException если почтовый индекс не соответствует формату
-  * @throws InvalidAddressValueException если другие параметры адреса недопустимы
+  * @throws InvalidPostalCodeException
+  *  если почтовый индекс не соответствует формату
+  * @throws InvalidAddressValueException
+  * если другие параметры адреса недопустимы
   */
   public PostalAddress(String country, String region, String city,
       String postalCode, String street, int houseNumber,
@@ -88,7 +94,8 @@ public class PostalAddress {
 
   /**
   * Устанавливает страну адреса.
-  * @param country название страны (не может быть null или пустой строкой)
+  * @param country название страны
+  * (не может быть null или пустой строкой)
   */
   public void setCountry(String country) {
     try {
@@ -137,7 +144,8 @@ public class PostalAddress {
   /**
   * Устанавливает почтовый индекс адреса.
   * @param postalCode почтовый индекс (должен состоять из 6 цифр)
-  * @throws InvalidPostalCodeException если формат почтового индекса неверный
+  * @throws InvalidPostalCodeException
+  * если формат почтового индекса неверный
   */
   public void setPostalCode(String postalCode) throws PostalAddress.InvalidPostalCodeException {
     // Пример использования утверждения (assert)
@@ -145,7 +153,8 @@ public class PostalAddress {
         
     try {
       if (!postalCode.matches("\\d{6}")) {
-        throw new InvalidPostalCodeException("Неверный формат почтового индекса. Должно быть 6 цифр.");
+        throw new InvalidPostalCodeException(
+          "Неверный формат почтового индекса. Должно быть 6 цифр.");
       }
       this.postalCode = postalCode;
       System.out.println("Почтовый индекс успешно обновлен.");
@@ -155,7 +164,8 @@ public class PostalAddress {
     } 
     catch (InvalidPostalCodeException e) {
       // Повторное генерирование исключения с добавлением информации 
-      throw new InvalidPostalCodeException("Ошибка в индексе " + postalCode + ": " + e.getMessage());
+      throw new InvalidPostalCodeException(
+        "Ошибка в индексе " + postalCode + ": " + e.getMessage());
     }
   }
 
@@ -181,7 +191,8 @@ public class PostalAddress {
   */
   public void setHouseNumber(int houseNumber) throws InvalidAddressValueException {
     if (houseNumber <= 0) {
-      throw new InvalidAddressValueException("Номер дома должен быть положительным числом");
+      throw new InvalidAddressValueException(
+        "Номер дома должен быть положительным числом");
     }
     this.houseNumber = houseNumber;
     System.out.println("Номер дома успешно обновлен.");
@@ -198,7 +209,8 @@ public class PostalAddress {
   */
   public void setApartment(int apartment) throws InvalidAddressValueException {
     if (apartment < 0) {
-      throw new InvalidAddressValueException("Номер квартиры не может быть отрицательным");
+      throw new InvalidAddressValueException(
+        "Номер квартиры не может быть отрицательным");
     }
     this.apartment = apartment;
     System.out.println("Квартира успешно обновлена.");
@@ -225,18 +237,22 @@ public class PostalAddress {
   /**
   * Устанавливает номер подъезда.
   * @param entrance номер подъезда (должен быть положительным)
-  * При недопустимом значении устанавливает 1 и записывает предупреждение в лог
+  * При недопустимом значении устанавливает 1
+  * и записывает предупреждение в лог
   */
   public void setEntrance(int entrance) {
     try {
       if (entrance <= 0) {
-        throw new InvalidAddressValueException("Номер подъезда должен быть положительным");
+        throw new InvalidAddressValueException(
+          "Номер подъезда должен быть положительным");
       }
       this.entrance = entrance;
       System.out.println("Подъезд успешно обновлен.");
     } catch (InvalidAddressValueException e) {
       // Подавление исключения с записью в лог
-      logger.log(Level.WARNING, "Подавлено исключение при установке подъезда: " + e.getMessage());
+      logger.log(
+        Level.WARNING,
+        "Подавлено исключение при установке подъезда: " + e.getMessage());
       this.entrance = 1;
     }
   }

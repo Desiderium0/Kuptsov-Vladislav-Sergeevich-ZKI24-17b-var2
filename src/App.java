@@ -4,6 +4,11 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Класс для управления почтовыми адресами.
+ * Класс предоставляет консольное меню для выполнения операций с почтовыми адресами:
+ * добавление, редактирование, просмотр и сортировку адресов.
+ */
 public class App {
   private static ArrayList<PostalAddress> addresses = new ArrayList<>();
   private static Scanner scanner = new Scanner(System.in);
