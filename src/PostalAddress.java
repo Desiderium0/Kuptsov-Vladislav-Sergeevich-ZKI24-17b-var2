@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -257,6 +258,10 @@ public class PostalAddress {
     }
   }
 
+  public int getEntrance() {
+    return entrance;
+  }
+
   public String getFullAddress() {
     return String.format(
       "Страна: %s\nРегион: %s\nГород: %s\nУлица: %s\nПодъезд: %s\nЭтаж: %s\nНомер дома: %s\nКвартира: %s\nПочтовый индекс: %s",
@@ -282,5 +287,27 @@ public class PostalAddress {
     }
 
     return "Стандартная";
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    PostalAddress that = (PostalAddress) o;
+    return houseNumber == that.houseNumber &&
+      apartment == that.apartment &&
+      entrance == that.entrance &&
+      Double.compare(that.floor, floor) == 0 &&
+      Objects.equals(country, that.country) &&
+      Objects.equals(region, that.region) &&
+      Objects.equals(city, that.city) &&
+      Objects.equals(postalCode, that.postalCode) &&
+      Objects.equals(street, that.street);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(country, region, city, postalCode, street, 
+      houseNumber, apartment, entrance, floor);
   }
 }
