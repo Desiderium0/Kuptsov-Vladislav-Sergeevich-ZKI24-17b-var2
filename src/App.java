@@ -436,13 +436,24 @@ public class App {
 		System.out.println("\nСумма всех номеров домов: " + sum);
 	}
 
-	// 5. Пример работы с Optional (поиск адреса с максимальным номером дома)
+	/*  5. Пример работы с Optional (поиск адреса с максимальным номером дома)
+  * Демонстрация работы с Optional на примере поиска адреса с максимальным номером дома.
+  * Этот пример выбран потому что:
+  * 1. Наглядно показывает необходимость Optional - даже при непустом списке адресов 
+  *    максимальный элемент может как бы отсутствовать (хотя метод .max() 
+  *    вернет элемент для непустой коллекции)
+  * 2. Позволяет продемонстрировать основные операции с Optional:
+  *    - ifPresent() для действия при наличии значения
+  *    - isPresent() для явной проверки
+  */
 	private static void streamOptionalExample() {
 		if (addresses.isEmpty()) {
 			System.out.println("Список адресов пуст.");
 			return;
 		}
 				
+    // Используем Optional для безопасной обработки отсутствующего (если есть) результата,
+    // даже после проверки isEmpty, так как stream.max() всегда возвращает Optional,
 		Optional<PostalAddress> maxHouseNumberAddress = addresses.stream()
 			.max(Comparator.comparingInt(PostalAddress::getHouseNumber));
 								
